@@ -1,15 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Ernst Earthworks Time Card</title>
+  <title>Ernst Earthworks Time Cards</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<h1>Foreman Time Card</h1>
+<div id="login">
+  <h2>Select Foreman</h2>
+  <button onclick="login('Foreman 1')">Foreman 1</button>
+  <button onclick="login('Foreman 2')">Foreman 2</button>
+  <button onclick="login('Foreman 3')">Foreman 3</button>
+</div>
 
-<div id="app"></div>
+<div id="app" style="display:none;">
+
+  <h1>Time Card</h1>
+
+  <label>Date:</label>
+  <input type="date" id="date"><br><br>
+
+  <label>Job:</label>
+  <select id="jobSelect"></select><br><br>
+
+  <div id="employees"></div>
+
+  <button onclick="saveTimecard()">SAVE TIMECARD</button>
+
+  <hr>
+
+  <h3>Settings</h3>
+
+  <input id="newEmployee" placeholder="New Employee">
+  <button onclick="addEmployee()">Add Employee</button>
+
+  <br><br>
+
+  <input id="newJobName" placeholder="Job Name">
+  <input id="newJobNumber" placeholder="Job Number">
+  <button onclick="addJob()">Add Job</button>
+
+</div>
 
 <script src="app.js"></script>
 
