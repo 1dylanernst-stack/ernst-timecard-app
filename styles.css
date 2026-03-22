@@ -1,0 +1,12 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+}
+
+input {
+  width: 60px;
+}
+
+.employee {
+  margin-bottom: 10px;
+}
