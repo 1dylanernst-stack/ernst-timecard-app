@@ -1,7 +1,7 @@
-const SUPABASE_URL = https://yvzxkxvfduzmkgqfxjvq.supabase.co
-const SUPABASE_KEY = sb_publishable_uSMjG9VPgd2jzyBe97QBFA_17nGyQyS
+const SUPABASE_URL = "https://yvzxkxvfduzmkggqfxjvq.supabase.co"
+const SUPABASE_KEY = "sb_publishable_uSMjG9VPgd2jzyBe97QBFA_17nGyQyS"
 
-const supabase = supabase.createClient(SUPABASE_URL,SUPABASE_KEY)
+const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 
 let foreman = ""
 
@@ -15,7 +15,7 @@ loadJobs()
 }
 
 async function loadEmployees(){
-const {data} = await supabase.from("employees").select("*")
+const {data} = await client.from("employees").select("*")
 
 const list = document.getElementById("employeeList")
 list.innerHTML = ""
@@ -33,7 +33,7 @@ OT <input id="ot_${emp.id}" type="number">
 }
 
 async function loadJobs(){
-const {data} = await supabase.from("jobs").select("*")
+const {data} = await client.from("jobs").select("*")
 
 const select = document.getElementById("jobSelect")
 select.innerHTML = ""
@@ -48,7 +48,7 @@ async function saveTimecard(){
 const date = document.getElementById("date").value
 const job = document.getElementById("jobSelect").value
 
-const {data:emps} = await supabase.from("employees").select("*")
+const {data:emps} = await client.from("employees").select("*")
 
 for (const emp of emps){
 
@@ -57,7 +57,7 @@ const ot = document.getElementById(`ot_${emp.id}`).value
 
 if(hours){
 
-await supabase.from("timecards").insert({
+await client.from("timecards").insert({
 employee: emp.name,
 job: job,
 date: date,
@@ -78,7 +78,7 @@ async function addEmployee(){
 
 const name = document.getElementById("newEmployee").value
 
-await supabase.from("employees").insert({name})
+await client.from("employees").insert({name})
 
 loadEmployees()
 
@@ -89,7 +89,7 @@ async function addJob(){
 const job_name = document.getElementById("newJobName").value
 const job_number = document.getElementById("newJobNumber").value
 
-await supabase.from("jobs").insert({job_name,job_number})
+await client.from("jobs").insert({job_name,job_number})
 
 loadJobs()
 
